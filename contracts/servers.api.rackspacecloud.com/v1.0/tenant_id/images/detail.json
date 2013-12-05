@@ -1,0 +1,54 @@
+{
+  "request": {
+    "headers": {
+    },
+    "method": "get",
+    "params": {
+    },
+    "path": "/v1.0/:tenant_id/images/detail.json"
+  },
+  "response": {
+    "headers": {
+      "Cache-Control": "s-maxage=1800",
+      "Content-Type": "application/json",
+      "Vary": "Accept-Encoding, Accept, Accept-Encoding, X-Auth-Token"
+    },
+    "status": 200,
+    "body": {
+      "$schema": "http://json-schema.org/draft-03/schema#",
+      "description": "Generated from vcr with shasum 3c27ca017203f23bb9a236a901d3681e5892d783",
+      "type": "object",
+      "required": true,
+      "properties": {
+        "images": {
+          "type": "array",
+          "required": true,
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "object",
+            "required": true,
+            "properties": {
+              "id": {
+                "type": "integer",
+                "required": true
+              },
+              "status": {
+                "type": "string",
+                "required": true
+              },
+              "updated": {
+                "type": "string",
+                "required": true
+              },
+              "name": {
+                "type": "string",
+                "required": true
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "request": {
+    "headers": {
+    },
+    "method": "get",
+    "params": {
+    },
+    "path": "/v2/:tenant_id/flavors/:flavor_id"
+  },
+  "response": {
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "status": 200,
+    "body": {
+      "$schema": "http://json-schema.org/draft-03/schema#",
+      "description": "Generated from vcr with shasum ad9598f3477bec1b42509afac1a789a79b3bcac7",
+      "type": "object",
+      "required": true,
+      "properties": {
+        "flavor": {
+          "type": "object",
+          "required": true,
+          "properties": {
+            "name": {
+              "type": "string",
+              "required": true
+            },
+            "links": {
+              "type": "array",
+              "required": true,
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "type": "object",
+                "required": true,
+                "properties": {
+                  "href": {
+                    "type": "string",
+                    "required": true
+                  },
+                  "rel": {
+                    "type": "string",
+                    "required": true
+                  }
+                }
+              }
+            },
+            "ram": {
+              "type": "integer",
+              "required": true
+            },
+            "vcpus": {
+              "type": "integer",
+              "required": true
+            },
+            "swap": {
+              "type": "integer",
+              "required": true
+            },
+            "rxtx_factor": {
+              "type": "number",
+              "required": true
+            },
+            "OS-FLV-EXT-DATA:ephemeral": {
+              "type": "integer",
+              "required": true
+            },
+            "disk": {
+              "type": "integer",
+              "required": true
+            },
+            "id": {
+              "type": "string",
+              "required": true
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "request": {
+    "headers": {
+    },
+    "method": "get",
+    "params": {
+    },
+    "path": "/v1.0/000000/flavors/detail.json"
+  },
+  "response": {
+    "headers": {
+      "Cache-Control": "s-maxage=1800",
+      "Content-Type": "application/json",
+      "Vary": "Accept-Encoding, Accept, Accept-Encoding, X-Auth-Token"
+    },
+    "status": 200,
+    "body": {
+      "$schema": "http://json-schema.org/draft-03/schema#",
+      "description": "Generated from vcr with shasum 3c2005e3d99f075d5f2e8adec83bcc802e8431b3",
+      "type": "object",
+      "required": true,
+      "properties": {
+        "flavors": {
+          "type": "array",
+          "required": true,
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "object",
+            "required": true,
+            "properties": {
+              "id": {
+                "type": "integer",
+                "required": true
+              },
+              "ram": {
+                "type": "integer",
+                "required": true
+              },
+              "disk": {
+                "type": "integer",
+                "required": true
+              },
+              "name": {
+                "type": "string",
+                "required": true
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
