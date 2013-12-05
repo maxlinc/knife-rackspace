@@ -2,6 +2,8 @@ require 'spec_helper'
 require 'vcr'
 require 'ansi/code'
 require 'ansi/diff'
+require 'pacto'
+require 'pacto/rspec'
 
 Chef::Config[:knife][:rackspace_api_username] = "#{ENV['OS_USERNAME']}"
 Chef::Config[:knife][:rackspace_api_key] = "#{ENV['OS_PASSWORD']}"
@@ -10,7 +12,7 @@ Chef::Config[:knife][:ssl_verify_peer] = false
 
 VCR.configure do |c|
   c.cassette_library_dir = 'spec/cassettes'
-  c.hook_into :excon
+  c.hook_into :webmock
   c.configure_rspec_metadata!
 
   # Sensitive data
@@ -63,6 +65,10 @@ RSpec.configure do |c|
   # so we can use :vcr rather than :vcr => true;
   # in RSpec 3 this will no longer be necessary.
   c.treat_symbols_as_metadata_keys_with_true_values = true
+  c.after(:each) do
+    WebMock.reset!
+    Pacto::ValidationRegistry.instance.reset!
+  end
 end
 
 def clean_output(output)
@@ -132,3 +138,21 @@ ensure
   $VERBOSE = warn
   null.close
 end
+
+# Pacto.generate!
+Pacto.configure do | config |
+  config.preprocessor = nil
+  config.postprocessor = nil
+  config.contracts_path = 'contracts'
+  config.strict_matchers = false
+  config.generator_options = {:schema_version => :draft3}
+end
+
+# Pacto.generate! # if you need new contracts
+Pacto.validate!
+hosts = Dir["#{Pacto.configuration.contracts_path}/*"].each do |host|
+  host = File.basename host
+  Pacto.load_all host, "https://#{host}", :default
+end
+
+# Pacto.use :default # when you're ready to stub with Pacto

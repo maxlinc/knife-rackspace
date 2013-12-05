@@ -41,6 +41,13 @@ ID  Name                     VCPUs  RAM    Disk
   """}
       stdout = ANSI.unansi stdout
       stdout.should match_output(expected_output[api])
+
+      url = {
+        :v1 => "https://servers.api.rackspacecloud.com/v1.0/000000/flavors/detail.json",
+        :v2 => "https://dfw.servers.api.rackspacecloud.com/v2/000000/flavors/detail"
+      }
+      expect(Pacto).to have_validated :get, url[api]
+
     end
 
     it 'should list images', :vcr do
